@@ -9,6 +9,7 @@
 import sys
 import os
 import time
+import logging; logger = logging.getLogger()
 
 import py
 import pytest
@@ -95,6 +96,7 @@ class WorkerInteractor:
     def pytest_collection_modifyitems(self, session, config, items):
         # add the group name to nodeid as suffix if --dist=loadgroup
         if config.getvalue("loadgroup"):
+            logger.error('LALALAAAAA')
             for item in items:
                 try:
                     mark = item.get_closest_marker("worker_group")
