@@ -189,7 +189,7 @@ def pytest_configure(config):
         config.option.forked = True
 
     config_line = (
-        "parallel-group: specify group for tests should run in same session."
+        "worker_group: specify group for tests should run in same session."
         "in relation to one another. " + "Provided by pytest-xdist."
     )
     config.addinivalue_line('markers', config_line)
