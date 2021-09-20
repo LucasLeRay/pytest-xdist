@@ -107,7 +107,7 @@ class WorkerInteractor:
                 if mark:
                     gname = mark.kwargs.get("name")
                     if gname:
-                        item._nodeid  = "%s@%s[%s]" % (item.nodeid, gname, param_value.group(1))
+                        item._nodeid  = "%s@%s(%s)" % (item.nodeid, gname, param_value.group(1))
 
     def pytest_collection_finish(self, session):
         try:
