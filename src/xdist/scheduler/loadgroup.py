@@ -62,10 +62,6 @@ class LoadGroupScheduling(LoadScopeScheduling):
             gname
         """
         res = re.search(r"\[(.*)\]", nodeid)
-        return res.group(1)
-        return nodeid.rsplit("::", 1)[0]
-        if nodeid.rfind("@") > nodeid.rfind("]"):
-            # check the index of ']' to avoid the case: parametrize mark value has '@'
-            return nodeid.split("@")[-1]
-        else:
-            return nodeid
+        params = res.group(1)
+        group_name = nodeid.split("@")[-1]
+        return f'{group_name}[{params}]'
