@@ -1,5 +1,6 @@
 from .loadscope import LoadScopeScheduling
 from py.log import Producer
+import re
 
 
 class LoadGroupScheduling(LoadScopeScheduling):
@@ -60,6 +61,9 @@ class LoadGroupScheduling(LoadScopeScheduling):
             gname
             gname
         """
+        res = re.search(r"\[(.*)\]", nodeid)
+        return res.group(1)
+        return nodeid.rsplit("::", 1)[0]
         if nodeid.rfind("@") > nodeid.rfind("]"):
             # check the index of ']' to avoid the case: parametrize mark value has '@'
             return nodeid.split("@")[-1]
