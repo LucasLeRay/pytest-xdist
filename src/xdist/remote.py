@@ -7,6 +7,7 @@
 """
 
 import sys
+import re
 import os
 import time
 import logging; logger = logging.getLogger()
@@ -96,17 +97,17 @@ class WorkerInteractor:
     def pytest_collection_modifyitems(self, session, config, items):
         # add the group name to nodeid as suffix if --dist=loadgroup
         if config.getvalue("loadgroup"):
-            logger.error('LALALAAAAA')
             for item in items:
                 try:
                     mark = item.get_closest_marker("worker_group")
                 except AttributeError:
                     mark = item.get_marker("worker_group")
 
+                param_value = re.search(r"\[([0-9]+)\]", item.nodeid)
                 if mark:
                     gname = mark.kwargs.get("name")
                     if gname:
-                        item._nodeid  = "%s@%s" % (item.nodeid, gname)
+                        item._nodeid  = "%s@%s[%s]" % (item.nodeid, gname, param_value.group(1))
 
     def pytest_collection_finish(self, session):
         try:
