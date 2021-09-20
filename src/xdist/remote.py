@@ -97,9 +97,9 @@ class WorkerInteractor:
         if config.getvalue("loadgroup"):
             for item in items:
                 try:
-                    mark = item.get_closest_marker("group")
+                    mark = item.get_closest_marker("parallel-group")
                 except AttributeError:
-                    mark = item.get_marker("group")
+                    mark = item.get_marker("parallel-group")
 
                 if mark:
                     gname = mark.kwargs.get("name")
