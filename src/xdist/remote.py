@@ -7,10 +7,8 @@
 """
 
 import sys
-import re
 import os
 import time
-import logging; logger = logging.getLogger()
 
 import py
 import pytest
