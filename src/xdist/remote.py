@@ -103,7 +103,7 @@ class WorkerInteractor:
                 except AttributeError:
                     mark = item.get_marker("worker_group")
 
-                param_value = re.search(r"\[.*\]", item.nodeid)
+                param_value = re.search(r"\[(.*)\]", item.nodeid)
                 if mark:
                     gname = mark.kwargs.get("name")
                     if gname:
