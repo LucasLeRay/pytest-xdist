@@ -62,6 +62,6 @@ class LoadGroupScheduling(LoadScopeScheduling):
             gname
         """
         res = re.search(r"\[(.*)\]", nodeid)
-        params = res.group(1)
+        params = res.group(1) if res else ''
         group_name = nodeid.split("@")[-1]
         return f'{group_name}[{params}]'
